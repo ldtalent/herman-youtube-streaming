@@ -1,0 +1,23 @@
+<div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" class="wrap" style="width: 100%; height: inherit;">
+  <div
+      fxFlex="0 1 calc(100%)"
+      fxLayoutAlign="center"
+    >
+    <iframe title="First course"
+    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    </iframe>
+    </div>
+    <div
+      fxFlex="0 1 calc(100%)"
+      fxLayoutAlign="center"
+    >
+
+    <mat-tab-group style="width: 100%;">
+
+      <mat-tab *ngFor="let playlist of playlists$ | async" label="{{playlist.title}}">
+        <a *ngFor="let item of playlist.items" href="https://www.youtube.com/embed/{{item.videoId}}">
+          <img src="{{item.thumbnails.default.url}}" alt="jjf">
+        </a>
+      </mat-tab>
+    </mat-tab-group>
+</div>
