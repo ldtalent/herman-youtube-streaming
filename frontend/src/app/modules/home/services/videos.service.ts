@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideosService {
 
-  playlists$ = new Subject<any>();
+  playlists$ = new ReplaySubject<any>(1);
 
   constructor(private http: HttpClient) { }
 
@@ -29,4 +29,16 @@ export class VideosService {
 
   createPlaylist = data => this.http.post(`${environment.apiBaseUrl}/playlists`, data);
 
+  uploadVideo = file => {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    formData.append('fileKey', file, file.name);
+
+    return this.http.post<any>(`${environment.apiBaseUrl}/upload`, formData, { headers });
+  };
+
+  addVideoToPlaylist = (video, playlistId) => this.http.post<any>(`${environment.apiBaseUrl}/playlists/${playlistId}`, video);
 }

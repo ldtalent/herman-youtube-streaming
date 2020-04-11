@@ -27,4 +27,11 @@ mat-toolbar {
   background-color: white;
 }
 
+::ng-deep .mat-tab-body-content {
+  display: flex;
+  flex-direction: row;
+}
 
+span {
+  margin-left: 20px;
+}

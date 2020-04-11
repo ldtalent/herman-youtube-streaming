@@ -16,3 +16,18 @@ mat-toolbar {
     display: flex !important;
     flex-direction: column !important;
 }
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 900px) {
+
+    mat-drawer {
+        width: 50%;
+    }
+      
+  }
+  
+  @media only screen and (max-width: 500px) {
+    mat-drawer {
+        width: 70%;
+    }
+      }

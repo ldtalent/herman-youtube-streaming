@@ -7,7 +7,7 @@
         </mat-expansion-panel-header>
 
         <button mat-button>Playlists</button>
-        <button mat-button>Upload Video</button>
+        <button mat-button (click)="openVideoUpload()">Upload Video</button>
         <button mat-button (click)="openBottomSheet()">Create Playlist</button>
       </mat-expansion-panel>
       <mat-expansion-panel>
@@ -19,7 +19,7 @@
     </mat-accordion>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar fxLayout="row" fxLayoutAlign="space-between" [color]="'warn'">
+    <mat-toolbar fxLayout="row wrap" fxLayoutAlign="space-between" [color]="'warn'">
       <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
       <span>Streamer</span>
       <button mat-button (click)="login()">Login</button>

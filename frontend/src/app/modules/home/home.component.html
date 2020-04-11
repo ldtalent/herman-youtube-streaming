@@ -3,8 +3,8 @@
       fxFlex="0 1 calc(100%)"
       fxLayoutAlign="center"
     >
-    <iframe title="First course"
-    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    <iframe title="First course" *ngIf="currentVideo"
+    [src]="currentVideo">
     </iframe>
     </div>
     <div
@@ -14,10 +14,14 @@
 
     <mat-tab-group style="width: 100%;">
 
-      <mat-tab *ngFor="let playlist of playlists$ | async" label="{{playlist.title}}">
-        <a *ngFor="let item of playlist.items" href="https://www.youtube.com/embed/{{item.videoId}}">
-          <img src="{{item.thumbnails.default.url}}" alt="jjf">
+      <mat-tab *ngFor="let playlist of playlists$ | async" label="{{playlist.title}}" fxLayout="row">
+        <span *ngFor="let item of playlist.items">
+          <a (click)="playVideo(item.videoId)">
+          <img src="{{item.thumbnails.default.url}}" alt="{{item.title}}">
         </a>
+        <div>{{item.title | titlecase}}</div>
+        </span>
+        
       </mat-tab>
     </mat-tab-group>
 </div>

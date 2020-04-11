@@ -3,6 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NewPlaylistComponent } from './modules/home/newPlaylist/newPlaylist.component';
 import { AuthService } from './services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UploadVideoComponent } from './modules/home/upload-video/upload-video.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,9 @@ export class AppComponent implements OnInit {
 
   openBottomSheet(): void {
     this._bottomSheet.open(NewPlaylistComponent);
+  }
+  openVideoUpload(): void {
+    this._bottomSheet.open(UploadVideoComponent);
   }
 
   login = () => this.authService.login().subscribe(({ url }) => window.location = url);
