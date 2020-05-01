@@ -1,12 +1,12 @@
 const fs = require('fs-extra');
 const readline = require('readline');
 const { google } = require('googleapis');
-const { OAuth2Client } = require('google-auth-library');
 const { TOKEN_PATH, SCOPES, TOKEN_DIR, PRIVATE, UNLISTED, YOUTUBE_CHANNEL_ID } = require('../config');
 
 class Auth {
   constructor() {
     const OAuth2 = google.auth.OAuth2;
+    // Argument to fs.readfileSync is the path to your credentials file;
     const secret = fs.readFileSync('./client_id.json');
     const secretContent = JSON.parse(secret);
     const clientSecret = secretContent.web.client_secret;
@@ -15,6 +15,10 @@ class Auth {
     this.oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
   }
 
+  /*
+  Generates the redirect url to sign in.
+  After sign in, it redirects to the redirect url you specified in the console project.
+  */
   youtubeAuthUrl() {
     return this.oauth2Client.generateAuthUrl({
     access_type: 'offline',
@@ -22,6 +26,10 @@ class Auth {
   });
   }
 
+  /*
+  Here we pass the code we extract from our redirect url to get and store the auth token.
+  This means we sign in once per session.
+  */
   async youtubeAccess(authCode = null) {
     try {
       const token = await fs.readFile(TOKEN_PATH);

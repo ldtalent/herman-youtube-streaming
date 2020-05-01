@@ -1,0 +1,15 @@
+ul li {
+  list-style-type: none;
+}
+
+.event {
+  display: flex;
+}
+
+.more-info {
+  max-width: 50%;
+}
+
+.more-info #description {
+  word-break: break-word;
+}

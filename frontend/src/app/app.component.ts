@@ -4,6 +4,7 @@ import { NewPlaylistComponent } from './modules/home/newPlaylist/newPlaylist.com
 import { AuthService } from './services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UploadVideoComponent } from './modules/home/upload-video/upload-video.component';
+import { NewEventComponent } from './modules/LiveStream/newEvent/newEvent.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,9 @@ export class AppComponent implements OnInit {
   }
   openVideoUpload(): void {
     this._bottomSheet.open(UploadVideoComponent);
+  }
+  openNewEvent(): void {
+    this._bottomSheet.open(NewEventComponent);
   }
 
   login = () => this.authService.login().subscribe(({ url }) => window.location = url);

@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const modules = [
     MatSidenavModule,
@@ -25,6 +26,7 @@ const modules = [
     MatChipsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatStepperModule,
     ScrollingModule,
     FlexLayoutModule
 ];
